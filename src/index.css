@@ -1,0 +1,510 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-brand-red: #c41230;
+  --color-brand-red-dark: #961027;
+  --color-brand-cream: #f8f4ee;
+  --color-brand-ink: #171719;
+  --font-sans:
+    'Aptos', 'Segoe UI Variable', 'Segoe UI', Helvetica, Arial, sans-serif;
+  --shadow-soft: 0 16px 50px rgb(12 12 14 / 0.12);
+}
+
+:root {
+  font-family: var(--font-sans);
+  color: var(--color-brand-ink);
+  background: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  color: #ffffff;
+  background: var(--color-brand-red);
+}
+
+.hero-slide {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.035);
+  transition:
+    opacity 900ms ease,
+    visibility 900ms ease,
+    transform 6.5s ease;
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.hero-slide::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  background:
+    linear-gradient(90deg, rgb(13 13 16 / 0.58), rgb(13 13 16 / 0.4), rgb(13 13 16 / 0.58)),
+    linear-gradient(0deg, rgb(13 13 16 / 0.35), transparent 55%);
+}
+
+.hero-content {
+  animation: hero-content-in 700ms ease both;
+}
+
+.hero-title {
+  font-size: clamp(2.15rem, min(5.4vw, 8vh), 4.8rem);
+}
+
+.logo-marquee {
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+}
+
+.logo-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: logo-marquee 26s linear infinite;
+  will-change: transform;
+}
+
+.logo-marquee:hover .logo-marquee-track,
+.logo-marquee:focus-within .logo-marquee-track {
+  animation-play-state: paused;
+}
+
+.logo-marquee-group {
+  display: flex;
+  width: 780px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 30px;
+}
+
+.logo-marquee-image {
+  width: 720px;
+  max-width: none;
+  height: auto;
+}
+
+.neighborhood-card {
+  transition:
+    border-color 350ms ease,
+    box-shadow 350ms ease;
+}
+
+.neighborhood-card:hover,
+.neighborhood-card:focus-within {
+  border-color: rgb(196 18 48 / 0.2);
+  box-shadow:
+    0 20px 44px rgb(20 20 24 / 0.12),
+    0 5px 14px rgb(196 18 48 / 0.05);
+}
+
+.neighborhood-card-action {
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  transition:
+    visibility 0s linear 240ms,
+    opacity 240ms ease,
+    transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 300ms ease;
+}
+
+.neighborhood-card:hover .neighborhood-card-action,
+.neighborhood-card:focus-within .neighborhood-card-action {
+  visibility: visible;
+  pointer-events: auto;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0s;
+}
+
+.neighborhood-card-action svg {
+  transition: transform 300ms ease;
+}
+
+.neighborhood-card-action:hover svg,
+.neighborhood-card-action:focus-visible svg {
+  transform: translateX(3px);
+}
+
+.why-card-grid {
+  perspective: 1200px;
+}
+
+.why-card {
+  --rotate-x: 0deg;
+  --rotate-y: 0deg;
+  --network-x: 0px;
+  --network-y: 0px;
+  box-shadow:
+    0 18px 42px rgb(28 22 24 / 0.08),
+    0 2px 8px rgb(28 22 24 / 0.04);
+  transform: perspective(1000px) rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) translateY(0);
+  transform-style: preserve-3d;
+  transition:
+    transform 160ms ease-out,
+    box-shadow 350ms ease,
+    border-color 350ms ease;
+  will-change: transform;
+}
+
+.why-card:hover,
+.why-card:focus-visible {
+  border-color: rgb(196 18 48 / 0.16);
+  box-shadow:
+    0 26px 56px rgb(35 29 31 / 0.13),
+    0 7px 18px rgb(35 29 31 / 0.05);
+  transform: perspective(1000px) rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) translateY(-5px);
+}
+
+.why-card-content {
+  transform: translateZ(26px);
+  transform-style: preserve-3d;
+}
+
+.why-card-icon {
+  transform: translateZ(24px);
+  transition:
+    transform 350ms ease,
+    box-shadow 350ms ease;
+}
+
+.why-card:hover .why-card-icon,
+.why-card:focus-visible .why-card-icon {
+  box-shadow: 0 16px 34px rgb(196 18 48 / 0.2);
+  transform: translateZ(38px) rotate(-3deg) scale(1.04);
+}
+
+.why-card-accent {
+  box-shadow: 0 0 14px rgb(196 18 48 / 0.3);
+  transition: width 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.why-card:hover .why-card-accent,
+.why-card:focus-visible .why-card-accent {
+  width: 5.5rem;
+}
+
+.why-card-network {
+  position: absolute;
+  right: -38px;
+  bottom: -22px;
+  z-index: 0;
+  width: 82%;
+  height: auto;
+  color: var(--color-brand-red);
+  pointer-events: none;
+  opacity: 0.09;
+  filter: drop-shadow(0 5px 8px rgb(196 18 48 / 0.12));
+  transform: translate3d(var(--network-x), var(--network-y), 8px);
+  transition: opacity 350ms ease;
+}
+
+.why-network-lines path {
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 10 7;
+  vector-effect: non-scaling-stroke;
+  animation: why-line-flow 7s linear infinite;
+}
+
+.why-network-lines path:nth-child(2) {
+  animation-duration: 9s;
+  animation-direction: reverse;
+}
+
+.why-network-lines path:nth-child(3) {
+  animation-duration: 6s;
+}
+
+.why-network-nodes circle {
+  fill: currentColor;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: why-node-pulse 3s ease-in-out infinite;
+}
+
+.why-network-nodes circle:nth-child(2n) {
+  animation-delay: -1.5s;
+}
+
+.why-card:hover .why-card-network,
+.why-card:focus-visible .why-card-network {
+  opacity: 0.17;
+}
+
+.contact-cta-card {
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.1);
+  transition:
+    transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 350ms ease,
+    background-color 350ms ease,
+    box-shadow 350ms ease;
+}
+
+.contact-cta-card::before {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 2px;
+  content: '';
+  background: linear-gradient(90deg, var(--color-brand-red), rgb(255 171 185 / 0.8), transparent 76%);
+  transform: scaleX(0.35);
+  transform-origin: left;
+  transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.contact-cta-card:hover,
+.contact-cta-card:focus-within {
+  border-color: rgb(255 255 255 / 0.95);
+  background-color: #ffffff;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.9),
+    0 18px 38px rgb(0 0 0 / 0.18);
+  transform: translateY(-5px);
+}
+
+.contact-cta-card:hover::before,
+.contact-cta-card:focus-within::before {
+  transform: scaleX(1);
+}
+
+.faq-plus::before,
+.faq-plus::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 1.5px;
+  border-radius: 999px;
+  content: '';
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  transition:
+    opacity 250ms ease,
+    transform 250ms ease;
+}
+
+.faq-plus::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.faq-plus.is-open::after {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+
+.faq-answer {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 350ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 250ms ease;
+}
+
+.faq-answer.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.footer-disclosures summary::-webkit-details-marker {
+  display: none;
+}
+
+.footer-legal-plus::before,
+.footer-legal-plus::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 1.5px;
+  border-radius: 999px;
+  content: '';
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  transition:
+    opacity 250ms ease,
+    transform 250ms ease;
+}
+
+.footer-legal-plus::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.footer-disclosures[open] .footer-legal-plus::after {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+
+@keyframes why-line-flow {
+  to {
+    stroke-dashoffset: -68;
+  }
+}
+
+@keyframes why-node-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+}
+
+@keyframes logo-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes hero-content-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-slide::after {
+    background:
+      linear-gradient(90deg, rgb(13 13 16 / 0.62), rgb(13 13 16 / 0.48), rgb(13 13 16 / 0.62)),
+      linear-gradient(0deg, rgb(13 13 16 / 0.35), transparent 55%);
+  }
+
+  .why-card {
+    transform: none;
+  }
+
+  .why-card:hover,
+  .why-card:focus-visible {
+    transform: translateY(-3px);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .neighborhood-card-action {
+    visibility: visible;
+    pointer-events: auto;
+    opacity: 1;
+    transform: none;
+    transition-delay: 0s;
+  }
+}
+
+@media (max-height: 680px) {
+  .hero-content {
+    scale: 0.88;
+  }
+}
+
+@media (max-height: 560px) {
+  .hero-content {
+    scale: 0.76;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .logo-marquee-track {
+    width: 100%;
+    justify-content: center;
+    animation: none;
+  }
+
+  .logo-marquee-group {
+    width: 100%;
+    padding-inline: 16px;
+  }
+
+  .logo-marquee-group:last-child {
+    display: none;
+  }
+
+  .logo-marquee-image {
+    width: min(100%, 900px);
+    max-width: 100%;
+  }
+
+  .why-card,
+  .why-card:hover,
+  .why-card:focus-visible {
+    transform: none;
+  }
+
+  .why-card-network {
+    transform: none;
+  }
+}

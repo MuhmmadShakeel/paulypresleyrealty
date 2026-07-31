@@ -55,6 +55,14 @@ function SearchIcon() {
   )
 }
 
+function ChevronDownIcon() {
+  return (
+    <svg aria-hidden="true" className="size-4" viewBox="0 0 24 24" fill="none">
+      <path d="m7 9.5 5 5 5-5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" />
+    </svg>
+  )
+}
+
 function Hero() {
   const [activeSlide, setActiveSlide] = useState(0)
   const [paused, setPaused] = useState(false)
@@ -82,7 +90,7 @@ function Hero() {
   const currentSlide = slides[activeSlide]
 
   return (
-    <main className="h-[calc(100dvh-76px)] min-h-0">
+    <main className="h-[calc(100dvh-116px)] min-h-0">
       <section
         className="hero-shell relative isolate h-full min-h-0 overflow-hidden bg-neutral-900 text-white"
         aria-label="Featured Austin real estate"
@@ -148,17 +156,33 @@ function Hero() {
 
             <form
               id="property-search"
-              className="mx-auto mt-6 flex max-w-2xl items-center gap-2 rounded-2xl bg-white p-2 text-brand-ink shadow-[0_18px_55px_rgb(0_0_0_/_0.24)] sm:rounded-full"
+              className="mx-auto mt-6 flex max-w-4xl flex-col items-stretch rounded-2xl bg-white p-2 text-brand-ink shadow-[0_18px_55px_rgb(0_0_0_/_0.24)] sm:flex-row sm:items-center sm:rounded-full"
               action="https://www.paulypresleyrealty.com/search.php"
               method="get"
               role="search"
               data-aos="fade-up"
               data-aos-delay="100"
             >
+              <label className="relative flex w-full shrink-0 items-center border-b border-neutral-200 px-3 sm:w-[285px] sm:border-r sm:border-b-0 sm:px-5">
+                <span className="sr-only">Listing source</span>
+                <select
+                  className="w-full appearance-none border-0 bg-transparent py-3 pr-7 text-xs font-extrabold text-brand-ink outline-none sm:text-[13px]"
+                  name="feed"
+                  defaultValue="abor"
+                  aria-label="Listing source"
+                >
+                  <option value="abor">Austin Board of Realtors</option>
+                  <option value="sabor">San Antonio Board of Realtors</option>
+                </select>
+                <span className="pointer-events-none absolute right-3 text-neutral-500 sm:right-4">
+                  <ChevronDownIcon />
+                </span>
+              </label>
+
               <label className="min-w-0 flex-1 px-3 text-left sm:px-5">
                 <span className="sr-only">Neighborhood, city, or ZIP code</span>
                 <input
-                  className="w-full border-0 bg-transparent py-2 text-sm font-semibold text-brand-ink outline-none placeholder:text-neutral-400"
+                  className="w-full border-0 bg-transparent py-3 text-sm font-semibold text-brand-ink outline-none placeholder:text-neutral-400"
                   type="search"
                   name="location"
                   placeholder="Neighborhood, city, or ZIP"
@@ -166,11 +190,11 @@ function Hero() {
                 />
               </label>
               <button
-                className="flex shrink-0 items-center justify-center gap-2 rounded-xl bg-brand-red px-4 py-3 text-[10px] font-extrabold tracking-[0.05em] text-white uppercase transition-colors hover:bg-brand-red-dark sm:rounded-full sm:px-5 sm:text-[11px]"
+                className="flex shrink-0 items-center justify-center gap-2 rounded-xl bg-brand-red px-5 py-3.5 text-[10px] font-extrabold tracking-[0.05em] text-white uppercase transition-all hover:-translate-y-0.5 hover:bg-brand-red-dark sm:rounded-full sm:px-6 sm:text-[11px]"
                 type="submit"
               >
                 <SearchIcon />
-                Search
+                Start search
               </button>
             </form>
 

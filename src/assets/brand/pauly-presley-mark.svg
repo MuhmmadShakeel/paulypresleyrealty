@@ -1,10 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title desc">
   <title id="title">Pauly Presley Realty</title>
-  <desc id="desc">A red circular real estate mark with a white monogram and roofline.</desc>
-  <circle cx="48" cy="48" r="46" fill="#c41230"/>
-  <circle cx="48" cy="48" r="39.5" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.5"/>
-  <path d="M25 43.5 48 25l23 18.5" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
-  <path d="M31 67V44h13.2c7 0 11.5 3.8 11.5 9.8 0 6.3-4.7 10.2-12 10.2h-5v3H31Zm7.7-9.2h4.7c3 0 4.8-1.4 4.8-3.8 0-2.3-1.7-3.6-4.6-3.6h-4.9v7.4Z" fill="#fff"/>
-  <path d="M57.5 67V44h7.2v16.7H74V67H57.5Z" fill="#fff"/>
-  <circle cx="71.5" cy="28.5" r="2.5" fill="#fff"/>
+  <desc id="desc">Pauly Presley Realty wordmark inside a red circle.</desc>
+  <circle cx="100" cy="100" r="98" fill="#c41230"/>
+  <g fill="#fff" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="100" y="75" font-size="31" font-weight="500" letter-spacing="4">PAULY</text>
+    <path d="M35 90 165 78" fill="none" stroke="#fff" stroke-width="4.5"/>
+    <text x="100" y="122" font-size="31" font-weight="700" letter-spacing="1.5">PRESLEY</text>
+    <path d="M49 137 151 128" fill="none" stroke="#fff" stroke-width="4"/>
+    <text x="100" y="163" font-size="22" font-weight="600" letter-spacing="11">REALTY</text>
+  </g>
 </svg>
